@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicio API</title>
+  </head>
+  <body>
+    <button>Frases de Breaking Bad</button>
+    <p class="quote"></p>
+    <p class="author"></p>
+    <script>
+      document.querySelector("button").addEventListener("click", function () {
+        const request2 = new XMLHttpRequest();
+        request2.open("GET", "https://api.breakingbadquotes.xyz/v1/quotes/");
+        request2.send();
+
+        request2.addEventListener("load", () => {
+          const response = JSON.parse(request2.responseText);
+
+          document.querySelector(".quote").innerHTML = response[0].quote;
+          document.querySelector(".author").innerHTML = response[0].author;
+        });
+      });
+    </script>
+  </body>
+</html>
